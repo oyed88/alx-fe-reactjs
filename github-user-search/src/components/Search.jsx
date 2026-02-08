@@ -1,57 +1,65 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
 
-function Search() {
-  const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+const Search = ({ onSearch }) => {
+  const [formData, setFormData] = useState({
+    username: "",
+    location: "",
+    minRepos: ""
+  });
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (!username) return;
-
-    setLoading(true);
-    setError("");
-    setUser(null);
-
-    try {
-      const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
-      setError("Looks like we cant find the user");
-    } finally {
-      setLoading(false);
-    }
+    onSearch(formData);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter GitHub username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto space-y-4"
+    >
+      <h2 className="text-xl font-semibold text-center">
+        Advanced GitHub User Search
+      </h2>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      <input
+        type="text"
+        name="username"
+        placeholder="Username or keyword"
+        value={formData.username}
+        onChange={handleChange}
+        className="w-full p-2 border rounded focus:outline-none focus:ring"
+      />
 
-      {user && (
-        <div>
-          <img src={user.avatar_url} width="100" alt={user.login} />
-          <h3>{user.name || user.login}</h3>
-          <a href={user.html_url} target="_blank">
-            View Profile
-          </a>
-        </div>
-      )}
-    </div>
+      <input
+        type="text"
+        name="location"
+        placeholder="Location (e.g. Nigeria)"
+        value={formData.location}
+        onChange={handleChange}
+        className="w-full p-2 border rounded focus:outline-none focus:ring"
+      />
+
+      <input
+        type="number"
+        name="minRepos"
+        placeholder="Minimum Repositories"
+        value={formData.minRepos}
+        onChange={handleChange}
+        className="w-full p-2 border rounded focus:outline-none focus:ring"
+      />
+
+      <button
+        type="submit"
+        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+      >
+        Search
+      </button>
+    </form>
   );
-}
+};
 
 export default Search;
