@@ -1,46 +1,66 @@
 import { useState } from "react";
 import Search from "./components/Search";
-import UserList from "./components/UserList";
+import UserCard from "./components/UserCard";
 import { searchUsers } from "./services/githubService";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [criteria, setCriteria] = useState(null);
   const [page, setPage] = useState(1);
-  const [lastQuery, setLastQuery] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (formData) => {
+  const fetchUsers = async (searchData, pageNumber = 1) => {
     setLoading(true);
-    setLastQuery(formData);
-    setPage(1);
+    const data = await searchUsers({ ...searchData, page: pageNumber });
 
-    const data = await searchUsers(formData, 1);
-    setUsers(data.items);
+    // Fetch full user details
+    const detailedUsers = await Promise.all(
+      data.items.map(async (user) => {
+        const res = await fetch(user.url);
+        return res.json();
+      })
+    );
+
+    if (pageNumber === 1) {
+      setUsers(detailedUsers);
+    } else {
+      setUsers((prev) => [...prev, ...detailedUsers]);
+    }
+
     setLoading(false);
   };
 
-  const loadMore = async () => {
+  const handleSearch = (searchData) => {
+    setCriteria(searchData);
+    setPage(1);
+    fetchUsers(searchData, 1);
+  };
+
+  const loadMore = () => {
     const nextPage = page + 1;
-    const data = await searchUsers(lastQuery, nextPage);
-    setUsers((prev) => [...prev, ...data.items]);
     setPage(nextPage);
+    fetchUsers(criteria, nextPage);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
+    <div className="min-h-screen bg-gray-100 p-6">
       <Search onSearch={handleSearch} />
 
-      {loading && <p className="text-center mt-4">Loading...</p>}
-
-      <UserList users={users} />
+      <div className="mt-6 grid gap-4 max-w-xl mx-auto">
+        {users.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
+      </div>
 
       {users.length > 0 && (
-        <button
-          onClick={loadMore}
-          className="block mx-auto mt-6 bg-gray-800 text-white px-4 py-2 rounded"
-        >
-          Load More
-        </button>
+        <div className="text-center mt-6">
+          <button
+            onClick={loadMore}
+            className="bg-gray-800 text-white px-6 py-2 rounded-md"
+          >
+            {loading ? "Loading..." : "Load More"}
+          </button>
+        </div>
       )}
     </div>
   );

@@ -1,65 +1,65 @@
 import { useState } from "react";
 
-const Search = ({ onSearch }) => {
-  const [formData, setFormData] = useState({
-    username: "",
-    location: "",
-    minRepos: ""
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+export default function Search({ onSearch }) {
+  const [username, setUsername] = useState("");
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(formData);
+    onSearch({ username, location, minRepos });
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto space-y-4"
+      className="bg-white shadow-md rounded-lg p-6 max-w-xl mx-auto space-y-4"
     >
-      <h2 className="text-xl font-semibold text-center">
+      <h2 className="text-xl font-semibold text-gray-700">
         Advanced GitHub User Search
       </h2>
 
-      <input
-        type="text"
-        name="username"
-        placeholder="Username or keyword"
-        value={formData.username}
-        onChange={handleChange}
-        className="w-full p-2 border rounded focus:outline-none focus:ring"
-      />
+      <div>
+        <label className="block text-sm font-medium">Username / Keyword</label>
+        <input
+          type="text"
+          className="w-full mt-1 p-2 border rounded-md"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="e.g. john"
+        />
+      </div>
 
-      <input
-        type="text"
-        name="location"
-        placeholder="Location (e.g. Nigeria)"
-        value={formData.location}
-        onChange={handleChange}
-        className="w-full p-2 border rounded focus:outline-none focus:ring"
-      />
+      <div>
+        <label className="block text-sm font-medium">Location</label>
+        <input
+          type="text"
+          className="w-full mt-1 p-2 border rounded-md"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder="e.g. Nigeria"
+        />
+      </div>
 
-      <input
-        type="number"
-        name="minRepos"
-        placeholder="Minimum Repositories"
-        value={formData.minRepos}
-        onChange={handleChange}
-        className="w-full p-2 border rounded focus:outline-none focus:ring"
-      />
+      <div>
+        <label className="block text-sm font-medium">
+          Minimum Repositories
+        </label>
+        <input
+          type="number"
+          className="w-full mt-1 p-2 border rounded-md"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+          placeholder="e.g. 10"
+        />
+      </div>
 
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+        className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
       >
         Search
       </button>
     </form>
   );
-};
-
-export default Search;
+}

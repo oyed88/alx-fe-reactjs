@@ -1,39 +1,30 @@
-import { useEffect, useState } from "react";
-
-const UserCard = ({ user }) => {
-  const [details, setDetails] = useState(null);
-
-  useEffect(() => {
-    fetch(user.url)
-      .then((res) => res.json())
-      .then((data) => setDetails(data));
-  }, [user.url]);
-
-  if (!details) return null;
-
+export default function UserCard({ user }) {
   return (
-    <div className="bg-white p-4 rounded shadow flex gap-4">
+    <div className="flex items-center gap-4 p-4 border rounded-lg">
       <img
-        src={details.avatar_url}
-        alt={details.login}
+        src={user.avatar_url}
+        alt={user.login}
         className="w-16 h-16 rounded-full"
       />
 
       <div>
-        <h3 className="font-semibold">{details.login}</h3>
-        <p>📍 {details.location || "N/A"}</p>
-        <p>📦 Repos: {details.public_repos}</p>
+        <h3 className="font-semibold">{user.login}</h3>
+        <p className="text-sm text-gray-600">
+          📍 {user.location || "Not available"}
+        </p>
+        <p className="text-sm text-gray-600">
+          📦 Repos: {user.public_repos}
+        </p>
+
         <a
-          href={details.html_url}
+          href={user.html_url}
           target="_blank"
           rel="noreferrer"
-          className="text-blue-600 underline"
+          className="text-blue-600 underline text-sm"
         >
           View Profile
         </a>
       </div>
     </div>
   );
-};
-
-export default UserCard;
+}

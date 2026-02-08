@@ -1,11 +1,13 @@
 const BASE_URL = "https://api.github.com/search/users";
 
-export const searchUsers = async ({ username, location, minRepos }, page = 1) => {
-  let query = "";
+export async function searchUsers({ username, location, minRepos, page = 1 }) {
+  let queryParts = [];
 
-  if (username) query += `${username}`;
-  if (location) query += ` location:${location}`;
-  if (minRepos) query += ` repos:>${minRepos}`;
+  if (username) queryParts.push(username);
+  if (location) queryParts.push(`location:${location}`);
+  if (minRepos) queryParts.push(`repos:>${minRepos}`);
+
+  const query = queryParts.join(" ");
 
   const response = await fetch(
     `${BASE_URL}?q=${encodeURIComponent(query)}&page=${page}&per_page=10`
@@ -15,5 +17,6 @@ export const searchUsers = async ({ username, location, minRepos }, page = 1) =>
     throw new Error("Failed to fetch users");
   }
 
-  return response.json();
-};
+  const data = await response.json();
+  return data;
+}
