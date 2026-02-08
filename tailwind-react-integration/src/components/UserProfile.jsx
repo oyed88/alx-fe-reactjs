@@ -1,46 +1,42 @@
-function UserProfile() {
+import React from "react";
+
+const UserProfile = () => {
   return (
     <div
       className="
-        bg-gray-100
-        p-4 md:p-8
-        max-w-xs md:max-w-sm
-        mx-auto my-20
-        rounded-lg shadow-lg
+        max-w-sm mx-auto mt-10 p-6 bg-white rounded-lg shadow-md
+        transition-shadow duration-300 ease-in-out
+        hover:shadow-xl
       "
     >
+      {/* Profile Image */}
       <img
         src="https://via.placeholder.com/150"
-        alt="User"
+        alt="Profile"
         className="
-          rounded-full
-          w-24 h-24 md:w-36 md:h-36
-          mx-auto
+          w-32 h-32 mx-auto rounded-full
+          transform transition-transform duration-300 ease-in-out
+          hover:scale-110
         "
       />
 
-      <h1
+      {/* Name */}
+      <h2
         className="
-          text-lg md:text-xl
-          text-blue-800
-          my-4
-          text-center
+          mt-4 text-2xl font-semibold text-center text-blue-600
+          transition-colors duration-300 ease-in-out
+          hover:text-blue-500
         "
       >
         John Doe
-      </h1>
+      </h2>
 
-      <p
-        className="
-          text-sm md:text-base
-          text-gray-600
-          text-center
-        "
-      >
-        Developer at Example Co. Loves to write code and explore new technologies.
+      {/* Bio */}
+      <p className="mt-2 text-center text-gray-600">
+        Frontend Developer passionate about React and Tailwind CSS.
       </p>
     </div>
   );
-}
+};
 
 export default UserProfile;
