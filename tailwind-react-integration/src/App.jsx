@@ -1,11 +1,8 @@
 import UserProfile from "./components/UserProfile";
 
 function App() {
-  return (
-    <div>
-      <UserProfile />
-    </div>
-  );
+  return <UserProfile />;
 }
 
 export default App;
+
