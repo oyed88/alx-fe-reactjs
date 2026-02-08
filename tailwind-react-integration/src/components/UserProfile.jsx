@@ -5,6 +5,7 @@ function UserProfile({ name, role, bio, image }) {
         bg-gray-100
         mx-auto my-20
         rounded-lg shadow-lg
+        hover:shadow-xl
 
         sm:p-4 md:p-8
         sm:max-w-xs md:max-w-sm
@@ -17,6 +18,9 @@ function UserProfile({ name, role, bio, image }) {
           rounded-full mx-auto
           sm:w-24 sm:h-24
           md:w-36 md:h-36
+
+          hover:scale-110
+          transition-transform duration-300 ease-in-out
         "
       />
 
@@ -24,6 +28,9 @@ function UserProfile({ name, role, bio, image }) {
         className="
           text-blue-800 text-center my-4
           sm:text-lg md:text-xl
+
+          hover:text-blue-500
+          transition-colors duration-300
         "
       >
         {name}
