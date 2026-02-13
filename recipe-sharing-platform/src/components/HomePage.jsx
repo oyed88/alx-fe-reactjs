@@ -6,7 +6,6 @@ function HomePage() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // Load recipes from JSON file
     setRecipes(recipesData.recipes);
   }, []);
 
@@ -30,7 +29,7 @@ function HomePage() {
                 {recipe.title}
               </h2>
 
-              <p className="text-gray-600 text-sm mt-1">
+              <p className="text-gray-600 text-sm">
                 {recipe.summary}
               </p>
             </div>
