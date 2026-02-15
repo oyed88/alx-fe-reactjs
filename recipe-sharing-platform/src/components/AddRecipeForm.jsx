@@ -9,6 +9,7 @@ function AddRecipeForm() {
   });
 
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const validateForm = () => {
@@ -57,8 +58,32 @@ function AddRecipeForm() {
     }
   };
 
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched(prev => ({
+      ...prev,
+      [name]: true
+    }));
+
+    // Validate single field on blur
+    const fieldErrors = validateForm();
+    if (fieldErrors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: fieldErrors[name]
+      }));
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Mark all fields as touched
+    setTouched({
+      title: true,
+      ingredients: true,
+      steps: true
+    });
     
     const newErrors = validateForm();
     
@@ -76,6 +101,9 @@ function AddRecipeForm() {
         steps: ''
       });
       
+      // Reset touched fields
+      setTouched({});
+      
       // Hide success message after 5 seconds
       setTimeout(() => {
         setSubmitted(false);
@@ -84,6 +112,13 @@ function AddRecipeForm() {
       // Set errors
       setErrors(newErrors);
     }
+  };
+
+  const handleReset = () => {
+    setFormData({ title: '', ingredients: '', steps: '' });
+    setErrors({});
+    setTouched({});
+    setSubmitted(false);
   };
 
   return (
@@ -138,15 +173,18 @@ function AddRecipeForm() {
               name="title"
               value={formData.title}
               onChange={handleChange}
+              onBlur={handleBlur}
               className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
-                errors.title 
+                touched.title && errors.title 
                   ? 'border-red-400 focus:border-red-500' 
                   : 'border-gray-300 focus:border-orange-500'
               }`}
               placeholder="e.g., Classic Chocolate Chip Cookies"
+              aria-invalid={touched.title && errors.title ? 'true' : 'false'}
+              aria-describedby={touched.title && errors.title ? 'title-error' : undefined}
             />
-            {errors.title && (
-              <p className="text-red-600 text-sm mt-2 flex items-center">
+            {touched.title && errors.title && (
+              <p id="title-error" className="text-red-600 text-sm mt-2 flex items-center" role="alert">
                 <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
@@ -171,16 +209,19 @@ function AddRecipeForm() {
               name="ingredients"
               value={formData.ingredients}
               onChange={handleChange}
+              onBlur={handleBlur}
               rows="8"
               className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all resize-y ${
-                errors.ingredients 
+                touched.ingredients && errors.ingredients 
                   ? 'border-red-400 focus:border-red-500' 
                   : 'border-gray-300 focus:border-orange-500'
               }`}
               placeholder="2 cups all-purpose flour&#10;1 cup sugar&#10;2 eggs&#10;1 tsp vanilla extract"
+              aria-invalid={touched.ingredients && errors.ingredients ? 'true' : 'false'}
+              aria-describedby={touched.ingredients && errors.ingredients ? 'ingredients-error' : undefined}
             />
-            {errors.ingredients && (
-              <p className="text-red-600 text-sm mt-2 flex items-center">
+            {touched.ingredients && errors.ingredients && (
+              <p id="ingredients-error" className="text-red-600 text-sm mt-2 flex items-center" role="alert">
                 <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
@@ -205,16 +246,19 @@ function AddRecipeForm() {
               name="steps"
               value={formData.steps}
               onChange={handleChange}
+              onBlur={handleBlur}
               rows="10"
               className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all resize-y ${
-                errors.steps 
+                touched.steps && errors.steps 
                   ? 'border-red-400 focus:border-red-500' 
                   : 'border-gray-300 focus:border-orange-500'
               }`}
               placeholder="1. Preheat oven to 350°F&#10;2. Mix dry ingredients in a bowl&#10;3. In another bowl, cream butter and sugar&#10;4. Combine wet and dry ingredients..."
+              aria-invalid={touched.steps && errors.steps ? 'true' : 'false'}
+              aria-describedby={touched.steps && errors.steps ? 'steps-error' : undefined}
             />
-            {errors.steps && (
-              <p className="text-red-600 text-sm mt-2 flex items-center">
+            {touched.steps && errors.steps && (
+              <p id="steps-error" className="text-red-600 text-sm mt-2 flex items-center" role="alert">
                 <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
@@ -233,10 +277,7 @@ function AddRecipeForm() {
             </button>
             <button
               type="button"
-              onClick={() => {
-                setFormData({ title: '', ingredients: '', steps: '' });
-                setErrors({});
-              }}
+              onClick={handleReset}
               className="sm:w-32 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
             >
               Clear
