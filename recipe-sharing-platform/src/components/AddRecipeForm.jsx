@@ -87,7 +87,7 @@ function AddRecipeForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 py-8 px-4 sm:px-6 md:px-8 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -100,7 +100,7 @@ function AddRecipeForm() {
             </svg>
             Back to Home
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2">
             Share Your Recipe
           </h1>
           <p className="text-gray-600 text-lg">
@@ -123,7 +123,7 @@ function AddRecipeForm() {
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 md:p-10">
           {/* Recipe Title */}
           <div className="mb-6">
             <label 
@@ -224,7 +224,7 @@ function AddRecipeForm() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row md:flex-row gap-4">
             <button
               type="submit"
               className="flex-1 bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -237,7 +237,7 @@ function AddRecipeForm() {
                 setFormData({ title: '', ingredients: '', steps: '' });
                 setErrors({});
               }}
-              className="sm:w-32 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+              className="sm:w-32 md:w-40 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
             >
               Clear
             </button>
