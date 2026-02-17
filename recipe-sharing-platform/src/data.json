@@ -1,0 +1,196 @@
+[
+  {
+    "id": 1,
+    "title": "Classic Spaghetti Carbonara",
+    "summary": "A traditional Italian pasta dish made with eggs, cheese, pancetta, and black pepper. Simple yet incredibly flavorful.",
+    "image": "https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&q=80",
+    "ingredients": [
+      "400g spaghetti",
+      "200g pancetta or guanciale, diced",
+      "4 large eggs",
+      "100g Pecorino Romano cheese, finely grated",
+      "50g Parmesan cheese, finely grated",
+      "Black pepper, freshly ground",
+      "Salt for pasta water"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to boil and cook the spaghetti according to package directions until al dente.",
+      "While pasta cooks, fry the pancetta in a large pan over medium heat until crispy, about 8-10 minutes. Remove from heat.",
+      "In a bowl, whisk together the eggs, Pecorino Romano, Parmesan, and a generous amount of black pepper.",
+      "Reserve 1 cup of pasta cooking water, then drain the spaghetti.",
+      "Add the hot pasta to the pan with pancetta, tossing to coat. Remove from heat.",
+      "Pour the egg mixture over the pasta, tossing quickly and continuously to create a creamy sauce. Add reserved pasta water as needed to achieve desired consistency.",
+      "Serve immediately with extra cheese and black pepper on top."
+    ],
+    "tips": [
+      "The key is to toss the pasta off the heat to avoid scrambling the eggs",
+      "Use freshly grated cheese for the best flavor and texture"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Homemade Margherita Pizza",
+    "summary": "The queen of pizzas! Fresh mozzarella, San Marzano tomatoes, and basil on a perfectly crispy crust.",
+    "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
+    "ingredients": [
+      "500g pizza dough (homemade or store-bought)",
+      "200g San Marzano tomatoes, crushed",
+      "250g fresh mozzarella, torn into pieces",
+      "Fresh basil leaves",
+      "2 cloves garlic, minced",
+      "2 tbsp extra virgin olive oil",
+      "Salt to taste",
+      "Semolina flour for dusting"
+    ],
+    "instructions": [
+      "Preheat your oven to the highest temperature (typically 475-500°F) with a pizza stone inside for at least 30 minutes.",
+      "Mix the crushed tomatoes with minced garlic, 1 tablespoon olive oil, and salt. Set aside.",
+      "Divide the dough into two portions. On a floured surface, stretch one portion into a 12-inch circle.",
+      "Transfer to a pizza peel dusted with semolina flour.",
+      "Spread half the tomato sauce over the dough, leaving a 1-inch border.",
+      "Distribute half the mozzarella pieces evenly over the sauce.",
+      "Slide the pizza onto the preheated stone and bake for 10-12 minutes until the crust is golden and cheese is bubbly.",
+      "Remove from oven, drizzle with remaining olive oil, and top with fresh basil leaves.",
+      "Repeat with remaining dough and toppings for the second pizza."
+    ],
+    "tips": [
+      "A pizza stone creates a crispier crust than a baking sheet",
+      "Don't overload the pizza with toppings or it won't cook properly"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Chocolate Chip Cookies",
+    "summary": "Soft, chewy, and loaded with chocolate chips. These classic cookies are perfect for any occasion!",
+    "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80",
+    "ingredients": [
+      "2¼ cups all-purpose flour",
+      "1 tsp baking soda",
+      "1 tsp salt",
+      "1 cup unsalted butter, softened",
+      "¾ cup granulated sugar",
+      "¾ cup packed brown sugar",
+      "2 large eggs",
+      "2 tsp vanilla extract",
+      "2 cups chocolate chips"
+    ],
+    "instructions": [
+      "Preheat your oven to 375°F (190°C). Line baking sheets with parchment paper.",
+      "In a medium bowl, whisk together flour, baking soda, and salt. Set aside.",
+      "In a large bowl, cream together the softened butter, granulated sugar, and brown sugar until light and fluffy, about 3-4 minutes.",
+      "Beat in the eggs one at a time, then stir in the vanilla extract.",
+      "Gradually blend in the flour mixture until just combined.",
+      "Fold in the chocolate chips with a spatula or wooden spoon.",
+      "Drop rounded tablespoons of dough onto the prepared baking sheets, spacing them about 2 inches apart.",
+      "Bake for 9-11 minutes, or until the edges are golden brown but centers still look slightly underdone.",
+      "Let cookies cool on the baking sheet for 5 minutes before transferring to a wire rack to cool completely."
+    ],
+    "tips": [
+      "Slightly underbaking ensures soft, chewy cookies",
+      "Chill the dough for 30 minutes before baking for thicker cookies"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Thai Green Curry",
+    "summary": "A fragrant and spicy Thai curry with coconut milk, vegetables, and your choice of protein. Authentic and delicious!",
+    "image": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800&q=80",
+    "ingredients": [
+      "2 tbsp vegetable oil",
+      "3 tbsp Thai green curry paste",
+      "400ml coconut milk",
+      "200ml chicken or vegetable stock",
+      "500g chicken breast, sliced (or tofu for vegetarian)",
+      "1 red bell pepper, sliced",
+      "100g green beans, trimmed",
+      "1 small eggplant, cubed",
+      "2 kaffir lime leaves",
+      "1 tbsp fish sauce (or soy sauce)",
+      "1 tbsp palm sugar or brown sugar",
+      "Fresh basil and cilantro for garnish",
+      "Lime wedges for serving"
+    ],
+    "instructions": [
+      "Heat the oil in a large wok or deep pan over medium-high heat.",
+      "Add the curry paste and stir-fry for 1-2 minutes until fragrant.",
+      "Pour in half the coconut milk and stir well to combine with the curry paste.",
+      "Add the chicken pieces and cook for 5 minutes until nearly cooked through.",
+      "Add the remaining coconut milk and stock, then bring to a gentle simmer.",
+      "Add the bell pepper, green beans, eggplant, and kaffir lime leaves. Simmer for 8-10 minutes until vegetables are tender.",
+      "Stir in the fish sauce and sugar, adjusting to taste.",
+      "Garnish with fresh basil and cilantro. Serve hot with jasmine rice and lime wedges."
+    ],
+    "tips": [
+      "Add more curry paste for extra heat, or coconut milk to make it milder",
+      "Fresh kaffir lime leaves add authentic flavor but can be omitted if unavailable"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Caesar Salad",
+    "summary": "Crisp romaine lettuce with a creamy, garlicky dressing, Parmesan cheese, and crunchy croutons. A timeless classic!",
+    "image": "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=800&q=80",
+    "ingredients": [
+      "2 heads romaine lettuce, chopped",
+      "1 cup croutons",
+      "½ cup grated Parmesan cheese",
+      "For the dressing:",
+      "3 cloves garlic, minced",
+      "2 anchovy fillets, finely chopped",
+      "2 large egg yolks",
+      "2 tbsp Dijon mustard",
+      "2 tbsp lemon juice",
+      "1 tsp Worcestershire sauce",
+      "¾ cup extra virgin olive oil",
+      "Salt and black pepper to taste"
+    ],
+    "instructions": [
+      "To make the dressing, combine garlic, anchovies, egg yolks, Dijon mustard, lemon juice, and Worcestershire sauce in a bowl.",
+      "Whisk vigorously while slowly drizzling in the olive oil until the dressing is thick and emulsified.",
+      "Season with salt and pepper to taste. Refrigerate for at least 30 minutes to let flavors meld.",
+      "Place the chopped romaine lettuce in a large salad bowl.",
+      "Pour the dressing over the lettuce and toss until every leaf is well coated.",
+      "Add the croutons and toss again gently.",
+      "Sprinkle with grated Parmesan cheese.",
+      "Serve immediately for the best texture."
+    ],
+    "tips": [
+      "For a safer option, use pasteurized eggs in the dressing",
+      "Make your own croutons by toasting cubed bread with olive oil and garlic"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Beef Tacos",
+    "summary": "Flavorful seasoned ground beef in crispy taco shells, topped with fresh ingredients. Perfect for Taco Tuesday!",
+    "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80",
+    "ingredients": [
+      "500g ground beef",
+      "1 onion, diced",
+      "2 cloves garlic, minced",
+      "2 tbsp taco seasoning",
+      "½ cup water",
+      "8-10 taco shells or tortillas",
+      "1 cup shredded lettuce",
+      "1 cup diced tomatoes",
+      "1 cup shredded cheddar cheese",
+      "½ cup sour cream",
+      "Salsa and hot sauce to taste",
+      "Fresh cilantro, chopped (optional)"
+    ],
+    "instructions": [
+      "Heat a large skillet over medium-high heat. Add the ground beef and cook, breaking it up with a spoon, until browned, about 6-8 minutes.",
+      "Add the diced onion and garlic to the beef and cook for another 3-4 minutes until softened.",
+      "Drain excess fat from the pan.",
+      "Stir in the taco seasoning and water. Simmer for 5 minutes until the sauce thickens.",
+      "While the meat simmers, warm the taco shells according to package directions.",
+      "Fill each taco shell with the seasoned beef.",
+      "Top with shredded lettuce, diced tomatoes, cheese, sour cream, and salsa.",
+      "Garnish with fresh cilantro if desired and serve immediately."
+    ],
+    "tips": [
+      "Make your own taco seasoning with chili powder, cumin, paprika, and garlic powder",
+      "Try grilling your tortillas for extra flavor"
+    ]
+  }
+]
