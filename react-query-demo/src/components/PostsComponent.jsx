@@ -27,17 +27,19 @@ function PostsComponent() {
     error,
     dataUpdatedAt,
     status,
+    isPreviousData,
     refetch,
   } = useQuery(
     'posts',           // Query key - uniquely identifies this query in the cache
     fetchPosts,        // Fetcher function
     {
-      staleTime: 30000,         // Data fresh for 30s
-      cacheTime: 300000,        // Cache persists 5 min after unmount
-      retry: 2,                 // Retry 2x on failure
-      refetchOnWindowFocus: true, // Refetch when tab regains focus
+      staleTime: 30000,             // Data remains fresh for 30 seconds
+      cacheTime: 300000,            // Cache persists for 5 minutes after unmount
+      retry: 2,                     // Retry failed requests up to 2 times
+      refetchOnWindowFocus: true,   // Refetch when browser tab regains focus
+      keepPreviousData: true,       // Show previous data while new data loads (smooth pagination)
       onSuccess: (data) => {
-        console.log(`✅ Posts loaded: ${data.length} items`);
+        console.log(`✅ Posts loaded successfully: ${data.length} items`);
       },
       onError: (err) => {
         console.error('❌ Failed to fetch posts:', err.message);
@@ -62,16 +64,16 @@ function PostsComponent() {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Reset to first page on search
+    setCurrentPage(1);
   };
 
-  const handleRefetch = () => {
-    // Invalidate the cache and trigger a fresh fetch
+  // Invalidate cache and trigger a background refetch
+  const handleInvalidateCache = () => {
     queryClient.invalidateQueries('posts');
   };
 
+  // Directly trigger a refetch without invalidating the cache
   const handleManualRefetch = () => {
-    // Directly trigger refetch without invalidating
     refetch();
   };
 
@@ -111,7 +113,7 @@ function PostsComponent() {
               className="btn-secondary"
               onClick={() => queryClient.removeQueries('posts')}
             >
-              Clear Cache & Retry
+              Clear Cache &amp; Retry
             </button>
           </div>
         </div>
@@ -122,6 +124,7 @@ function PostsComponent() {
   // ── Success State ──────────────────────────────────────────────────────────
   return (
     <div className="posts-container">
+
       {/* Status Bar */}
       <div className="status-bar">
         <div className="status-badges">
@@ -133,6 +136,11 @@ function PostsComponent() {
               <span className="pulse-dot"></span> Syncing...
             </span>
           )}
+          {isPreviousData && (
+            <span className="status-badge previous">
+              ⏳ Previous Data
+            </span>
+          )}
           <span className="status-badge info">
             {posts?.length} posts total
           </span>
@@ -140,6 +148,16 @@ function PostsComponent() {
         <div className="last-updated">
           Last updated: {new Date(dataUpdatedAt).toLocaleTimeString()}
         </div>
+      </div>
+
+      {/* Cache Info Banner */}
+      <div className="cache-banner">
+        <span className="cache-banner-icon">⚡</span>
+        <span>
+          <strong>keepPreviousData: true</strong> — React Query keeps showing
+          the last successful data while new data loads, preventing blank screens
+          during pagination and refetches.
+        </span>
       </div>
 
       {/* Toolbar */}
@@ -154,7 +172,10 @@ function PostsComponent() {
             onChange={handleSearch}
           />
           {searchTerm && (
-            <button className="clear-search" onClick={() => { setSearchTerm(''); setCurrentPage(1); }}>
+            <button
+              className="clear-search"
+              onClick={() => { setSearchTerm(''); setCurrentPage(1); }}
+            >
               ✕
             </button>
           )}
@@ -171,7 +192,7 @@ function PostsComponent() {
           </button>
           <button
             className="btn-invalidate"
-            onClick={handleRefetch}
+            onClick={handleInvalidateCache}
             disabled={isFetching}
             title="Invalidate cache and refetch"
           >
@@ -190,7 +211,7 @@ function PostsComponent() {
 
       {/* Posts Grid */}
       {paginatedPosts.length > 0 ? (
-        <div className="posts-grid">
+        <div className={`posts-grid ${isPreviousData ? 'is-previous' : ''}`}>
           {paginatedPosts.map((post) => (
             <PostCard
               key={post.id}
@@ -272,7 +293,9 @@ function PostCard({ post, isSelected, onClick }) {
       <p className="post-body">{post.body}</p>
       <div className="post-footer">
         <span className="post-user">User {post.userId}</span>
-        <span className="read-more">{isSelected ? 'Click to collapse ↑' : 'Click to expand ↓'}</span>
+        <span className="read-more">
+          {isSelected ? 'Click to collapse ↑' : 'Click to expand ↓'}
+        </span>
       </div>
     </article>
   );
@@ -294,9 +317,14 @@ function PostModal({ post, onClose }) {
         </div>
         <p className="modal-body">{post.body}</p>
         <div className="modal-query-info">
-          <h4>React Query Info</h4>
-          <p>This post detail is rendered from the <code>'posts'</code> query cache —
-          no additional API call was needed to open this modal.</p>
+          <h4>React Query Cache Info</h4>
+          <p>
+            This post detail is rendered directly from the <code>'posts'</code> query
+            cache — no additional API call was needed to open this modal.
+            keepPreviousData: true ensures that while this data is being refreshed
+            in the background, the UI never goes blank — previous data stays
+            visible until new data arrives.
+          </p>
         </div>
       </div>
     </div>
