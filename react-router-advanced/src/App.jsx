@@ -20,7 +20,7 @@ import NotFound from './pages/NotFound';
  *   /                     → Home
  *   /login                → Login
  *   /blog                 → BlogList
- *   /blog/:postId         → BlogPost (dynamic routing)
+ *   /blog/:id             → BlogPost (dynamic routing)
  *   /profile              → Profile [protected] → ProfileDetails (index)
  *   /profile/settings     → Profile [protected] → ProfileSettings (nested)
  *   *                     → NotFound
@@ -37,7 +37,7 @@ const App = () => {
 
           {/* Dynamic routing — blog posts */}
           <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:postId" element={<BlogPost />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
 
           {/*
             Protected route with nested children.
