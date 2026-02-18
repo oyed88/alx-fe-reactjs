@@ -9,7 +9,7 @@ const Home = () => {
     {
       icon: '⬡',
       title: 'Nested Routes',
-      desc: 'Profile sub-pages (Details & Settings) rendered within a shared layout using React Router's outlet system.',
+      desc: "Profile sub-pages (Details & Settings) rendered within a shared layout using React Router's outlet system.",
       path: isAuthenticated ? '/profile' : null,
     },
     {
