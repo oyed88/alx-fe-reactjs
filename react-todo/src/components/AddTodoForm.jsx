@@ -12,18 +12,14 @@ function AddTodoForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-todo-form">
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Add a new todo..."
-        className="todo-input"
-        aria-label="New todo input"
       />
-      <button type="submit" className="add-btn" disabled={!inputValue.trim()}>
-        Add Todo
-      </button>
+      <button type="submit">Add Todo</button>
     </form>
   );
 }
