@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import TodoList from "../components/TodoList";
+import AddTodoForm from "../components/AddTodoForm";
 
 describe("TodoList Component", () => {
   test("renders the TodoList component", () => {
@@ -35,5 +36,22 @@ describe("TodoList Component", () => {
     const deleteButtons = screen.getAllByText("Delete");
     fireEvent.click(deleteButtons[0]);
     expect(screen.queryByText("Learn React")).not.toBeInTheDocument();
+  });
+});
+
+describe("AddTodoForm Component", () => {
+  test("renders the AddTodoForm component", () => {
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
+    expect(screen.getByPlaceholderText("Add a new todo...")).toBeInTheDocument();
+  });
+
+  test("calls onAdd when form is submitted", () => {
+    const mockOnAdd = jest.fn();
+    render(<AddTodoForm onAdd={mockOnAdd} />);
+    const input = screen.getByPlaceholderText("Add a new todo...");
+    fireEvent.change(input, { target: { value: "New Todo" } });
+    fireEvent.submit(input.closest("form"));
+    expect(mockOnAdd).toHaveBeenCalledWith("New Todo");
   });
 });
