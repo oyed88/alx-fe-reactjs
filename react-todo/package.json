@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^5.1.0"
   },
   "devDependencies": {
@@ -23,7 +24,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "jest"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "jest": {
     "testEnvironment": "jsdom",
